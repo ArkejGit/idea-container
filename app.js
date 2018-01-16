@@ -5,15 +5,16 @@ const app = express();
 
 // Handlebars Middleware
 app.engine( 'handlebars', exphbs( {
-	defaultLayout: 'main'
+	'defaultLayout': 'main'
 } ) );
 app.set( 'view engine', 'handlebars' );
 
 // Index Route
 app.get( '/', ( req, res ) => {
 	const title = 'Welcome';
+
 	res.render( 'index', {
-		title: title
+		'title': title
 	} );
 } );
 
