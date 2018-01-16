@@ -7,7 +7,9 @@
     "lint": "eslint -c config/eslint.json **/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "pre-commit": [ "lint" ],
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ArkejGit/idea-container.git"
@@ -19,7 +21,8 @@
   },
   "homepage": "https://github.com/ArkejGit/idea-container#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^4.15.0",
