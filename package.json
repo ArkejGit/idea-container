@@ -4,8 +4,10 @@
   "description": "App to store ideas",
   "main": "app.js",
   "scripts": {
+    "lint": "eslint -c config/eslint.json **/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [ "lint" ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ArkejGit/idea-container.git"
