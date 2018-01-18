@@ -1,7 +1,17 @@
 const express = require( 'express' );
 const exphbs = require( 'express-handlebars' );
+const mongoose = require( 'mongoose' );
 
 const app = express();
+
+// Connect to mongoose
+mongoose.connect( 'mongodb://localhost/test' )
+	.then( () => {
+		console.log( 'MongoDB connected' ); // eslint-disable-line no-console
+	} )
+	.catch( err => {
+		console.log( err ); // eslint-disable-line no-console
+	} );
 
 // Handlebars Middleware
 app.engine( 'handlebars', exphbs( {
