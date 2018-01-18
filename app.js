@@ -13,6 +13,10 @@ mongoose.connect( 'mongodb://localhost/idea-container' )
 		console.log( err ); // eslint-disable-line no-console
 	} );
 
+// Load Idea Model
+require( './models/Idea' );
+const Idea = mongoose.model( 'ideas' ); // eslint-disable-line no-unused-vars
+
 // Handlebars Middleware
 app.engine( 'handlebars', exphbs( {
 	'defaultLayout': 'main'
