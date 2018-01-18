@@ -5,7 +5,7 @@ const mongoose = require( 'mongoose' );
 const app = express();
 
 // Connect to mongoose
-mongoose.connect( 'mongodb://localhost/test' )
+mongoose.connect( 'mongodb://localhost/idea-container' )
 	.then( () => {
 		console.log( 'MongoDB connected' ); // eslint-disable-line no-console
 	} )
