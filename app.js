@@ -16,7 +16,7 @@ mongoose.connect( 'mongodb://localhost/idea-container' )
 
 // Load Idea Model
 require( './models/Idea' );
-const Idea = mongoose.model( 'ideas' ); // eslint-disable-line no-unused-vars
+const Idea = mongoose.model( 'ideas' );
 
 // Handlebars Middleware
 app.engine( 'handlebars', exphbs( {
@@ -65,7 +65,16 @@ app.post( '/ideas', ( req, res ) => {
 			'details': req.body.details
 		} );
 	} else {
-		res.send( 'passed' );
+		const newIdea = {
+			'title': req.body.title,
+			'details': req.body.details
+		};
+
+		new Idea( newIdea )
+			.save()
+			.then( idea => { // eslint-disable-line no-unused-vars
+				res.redirect( '/ideas' );
+			} );
 	}
 } );
   
