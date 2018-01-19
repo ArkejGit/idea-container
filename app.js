@@ -2,6 +2,7 @@ const express = require( 'express' );
 const exphbs = require( 'express-handlebars' );
 const mongoose = require( 'mongoose' );
 const bodyParser = require( 'body-parser' );
+const methodOverride = require('method-override')
 
 const app = express();
 
@@ -27,6 +28,9 @@ app.set( 'view engine', 'handlebars' );
 // Body parser Middleware
 app.use( bodyParser.urlencoded( { 'extended': false } ) );
 app.use( bodyParser.json() );
+
+// Method-override Middleware
+app.use( methodOverride( '_method' ) );
 
 // Index Route
 app.get( '/', ( req, res ) => {
@@ -56,7 +60,7 @@ app.get( '/ideas/edit/:id', ( req, res ) => {
 			res.render( 'ideas/edit', {
 				'idea': idea
 			} );
-		} )
+		} );
 } );
 
 // Idea Index Page
@@ -99,6 +103,22 @@ app.post( '/ideas', ( req, res ) => {
 				res.redirect( '/ideas' );
 			} );
 	}
+} );
+
+// Edit form process
+app.put('/ideas/:id', ( req, res ) => {
+	Idea.findOne( {
+		'_id': req.params.id
+	} )
+		.then( idea => {
+			idea.title = req.body.title;
+			idea.details = req.body.details;
+
+			idea.save()
+				.then( idea => {
+					res.redirect( '/ideas' );
+				} );
+		} );
 } );
   
 const port = 5000;
