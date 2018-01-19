@@ -36,18 +36,18 @@ app.use( methodOverride( '_method' ) );
 
 // Express-session Middleware
 app.use( session( {
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
+	'secret': 'secret',
+	'resave': true,
+	'saveUninitialized': true
 } ) );
 
 // Connect-flash Middleware
 app.use( flash() );
 
 // Global variables
-app.use( function( req, res, next) {
-	res.locals.success_msg = req.flash( 'success_msg' );
-	res.locals.error_msg = req.flash( 'error_msg' );
+app.use( ( req, res, next ) => {
+	res.locals.success_msg = req.flash( 'success_msg' ); // eslint-disable-line camelcase
+	res.locals.error_msg = req.flash( 'error_msg' ); // eslint-disable-line camelcase
 	res.locals.error = req.flash( 'error' );
 	next();
 } );
@@ -136,7 +136,7 @@ app.put( '/ideas/:id', ( req, res ) => {
 			idea.details = req.body.details;
 
 			idea.save()
-				.then( idea => { // eslint-disable-line no-unused-vars, no-shadow					
+				.then( idea => { // eslint-disable-line no-unused-vars, no-shadow
 					req.flash( 'success_msg', 'Idea updated' );
 					res.redirect( '/ideas' );
 				} );
