@@ -2,7 +2,7 @@ const express = require( 'express' );
 const exphbs = require( 'express-handlebars' );
 const mongoose = require( 'mongoose' );
 const bodyParser = require( 'body-parser' );
-const methodOverride = require('method-override')
+const methodOverride = require( 'method-override' );
 
 const app = express();
 
@@ -106,7 +106,7 @@ app.post( '/ideas', ( req, res ) => {
 } );
 
 // Edit form process
-app.put('/ideas/:id', ( req, res ) => {
+app.put( '/ideas/:id', ( req, res ) => {
 	Idea.findOne( {
 		'_id': req.params.id
 	} )
@@ -115,12 +115,20 @@ app.put('/ideas/:id', ( req, res ) => {
 			idea.details = req.body.details;
 
 			idea.save()
-				.then( idea => {
+				.then( idea => { // eslint-disable-line no-unused-vars, no-shadow
 					res.redirect( '/ideas' );
 				} );
 		} );
 } );
-  
+
+// Delete Idea
+app.delete( '/ideas/:id', ( req, res ) => {
+	Idea.remove( { '_id': req.params.id } )
+		.then( () => {
+			res.redirect( '/ideas' );
+		} );
+} );
+
 const port = 5000;
 
 app.listen( port, () => {
