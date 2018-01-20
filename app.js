@@ -5,6 +5,7 @@ const bodyParser = require( 'body-parser' );
 const methodOverride = require( 'method-override' );
 const flash = require( 'connect-flash' );
 const session = require( 'express-session' );
+const path = require( 'path' );
 
 const app = express();
 
@@ -30,6 +31,9 @@ app.set( 'view engine', 'handlebars' );
 // Body parser Middleware
 app.use( bodyParser.urlencoded( { 'extended': false } ) );
 app.use( bodyParser.json() );
+
+// Static folder Middleware
+app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 // Method-override Middleware
 app.use( methodOverride( '_method' ) );
