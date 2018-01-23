@@ -16,7 +16,7 @@ router.get( '/register', ( req, res ) => {
 router.post( '/register', ( req, res ) => {
 	let errors = [];
 
-	if ( req.body.password != req.body.password2 ) {
+	if ( req.body.password !== req.body.password2 ) {
 		errors.push( { 'text': 'Passwords do not match' } );
 	}
 
@@ -35,6 +35,6 @@ router.post( '/register', ( req, res ) => {
 	} else {
 		res.send( 'passes' );
 	}
-} )
+} );
 
 module.exports = router;
