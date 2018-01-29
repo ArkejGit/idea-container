@@ -2,7 +2,7 @@ const express = require( 'express' );
 const router = express.Router(); // eslint-disable-line new-cap
 const mongoose = require( 'mongoose' ); // eslint-disable-line no-unused-vars
 const bcrypt = require( 'bcryptjs' );
-// const passport = require( 'passport' );
+const passport = require( 'passport' );
 
 // Load User Model
 require( '../models/User' );
@@ -16,6 +16,15 @@ router.get( '/login', ( req, res ) => {
 // User register route
 router.get( '/register', ( req, res ) => {
 	res.render( 'users/register' );
+} );
+
+// Login form POST
+router.post( '/login', ( req, res, next ) => {
+	passport.authenticate( 'local', {
+		'successRedirect': '/ideas',
+		'failureRedirect': '/users/login',
+		'failureFlash': true
+	} )( req, res, next );
 } );
 
 // Register form POST

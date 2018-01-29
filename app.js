@@ -6,12 +6,16 @@ const methodOverride = require( 'method-override' );
 const flash = require( 'connect-flash' );
 const session = require( 'express-session' );
 const path = require( 'path' );
+const passport = require( 'passport' );
 
 const app = express();
 
 // Load routes
 const ideas = require( './routes/ideas' );
 const users = require( './routes/users' );
+
+// Passport config
+require( './config/passport' )( passport );
 
 // Connect to mongoose
 mongoose.connect( 'mongodb://localhost/idea-container' )
