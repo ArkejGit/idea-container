@@ -51,15 +51,15 @@ router.post( '/register', ( req, res ) => {
 						'password': req.body.password
 					} );
 					
-					bcrypt.genSalt( 10, ( salt ) => {
-						bcrypt.hash( newUser.password, salt, ( err, hash ) => {
+					bcrypt.genSalt( 10, ( err, salt ) => { // eslint-disable-line handle-callback-err
+						bcrypt.hash( newUser.password, salt, ( err, hash ) => { // eslint-disable-line no-shadow
 							if ( err ) {
 								throw err;
 							}
 							newUser.password = hash;
 							newUser.save()
 								.then( user => { // eslint-disable-line no-unused-vars, no-shadow
-									req.flash( 'succes_msg', 'You are noe registered and can log in' );
+									req.flash( 'success_msg', 'You are now registered and can log in' );
 									res.redirect( '/users/login' );
 								} )
 								.catch( err => { // eslint-disable-line no-shadow
