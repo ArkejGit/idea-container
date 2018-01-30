@@ -1,5 +1,5 @@
 # idea-container
-Application for storing ideas created in Node.js (Express) using Handlebars for templating, Materialize for styling and Mongo as database.
+Application for storing ideas created in *Node.js* (*Express*) using *Handlebars* for templating, *Materialize* for styling and *MongoDB* as database.
 
 *based on [Traversy Media's project](https://www.udemy.com/nodejs-express-mongodb-dev-to-deployment/)*
 
